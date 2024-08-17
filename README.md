@@ -1,27 +1,37 @@
-# Help Center API Assignment
+# Abstract Internshala
 
-## Instructions
+## Project Setup
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/iAmritMalviya/fullstack-assignment
-   cd fullstack-assignment
-   ```
+### Prerequisites
+- Ensure you have created a MongoDB Atlas URL before starting.
 
-2. **Frontend:**
-   - Create a React app in the `frontend` folder.
-   - Follow the instructions in `frontend.md` to complete the frontend.
+### Installation Steps
 
-3. **Backend:**
-   - Create a Node.js app in the `backend` folder.
-   - Follow the `backend.md` instructions to complete the backend.
+1. Clone the repository:
 
-4. **Push Your Work:**
-   - Push both the frontend and backend apps to the same repository.
-   - Make sure the repository is public.
+```
+https://github.com/VikasMeshram2708/abstract.git
+```
 
-5. **Submit Your Work:**
-   - Paste the GitHub repository link in the Google form you received after pushing your code.
+2. Set up the backend:
 
----
+cd abstract/backend
+npm install
+npm run dev
 
+3. Set up the frontend:
+
+cd ../frontend
+npm install
+npm run dev
+
+4. Configure environment variables:
+
+cp .env.sample .env
+
+**Note**: Insert your MongoDB Atlas URI in the `.env` file.
+
+### Important Notes
+- Ensure all dependencies are installed in both backend and frontend directories.
+- Run both backend and frontend development servers simultaneously.
+- Verify your MongoDB Atlas URI is correctly entered in the `.env` file.
