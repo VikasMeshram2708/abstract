@@ -15,21 +15,27 @@ https://github.com/VikasMeshram2708/abstract.git
 
 2. Set up the backend:
 
-cd abstract/backend
-npm install
-npm run dev
+* cd abstract/backend
+* npm install
+* npm run dev
 
 3. Set up the frontend:
 
-cd ../frontend
-npm install
-npm run dev
+* cd ../frontend
+* npm install
+* npm run dev
 
 4. Configure environment variables:
 
-cp .env.sample .env
+* cp .env.sample .env
 
 **Note**: Insert your MongoDB Atlas URI in the `.env` file.
+
+## Backend API EndPoints
+
+* To Create a Card [http://localhost:8080/card/create]
+* To Read all Cards [http://localhost:8080/card/read]
+* To Read Single Card [http://localhost:8080/card/read/<title>]
 
 ### Important Notes
 - Ensure all dependencies are installed in both backend and frontend directories.

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import useDebounce from "../helpers/useDebounce";
-import { services } from "../../seed/backend";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 export default function HelpSection() {
   const [searchText, setSearchText] = useState("");
@@ -10,14 +11,26 @@ export default function HelpSection() {
 
   const debouncedValue = useDebounce(500, searchText);
 
+  const BaseURL = "http://localhost:8080";
+
+  const { data: services } = useQuery({
+    queryKey: ["card"],
+    queryFn: async () => {
+      const res = await fetch(`${BaseURL}/card/read`);
+      const result = await res.json();
+      console.log("res", result);
+      return result?.cards;
+    },
+  });
+
   useEffect(() => {
     if (debouncedValue) {
       setLoading(true);
       const results = services?.filter((item) => {
-        return item?.title.toLowerCase().includes(debouncedValue.toLowerCase()) ||
-          item?.description
-            .toLowerCase()
-            .includes(debouncedValue.toLowerCase());
+        return (
+          item?.title.toLowerCase().includes(debouncedValue.toLowerCase()) ||
+          item?.description.toLowerCase().includes(debouncedValue.toLowerCase())
+        );
       });
       setFilteredItems(results);
       setLoading(false);
@@ -56,13 +69,17 @@ export default function HelpSection() {
         )}
         {/* Display search results or no results message */}
         {!loading && debouncedValue && (
-          <div className="mt-4">
+          <div className="mt-4 bg-gray-400 p-4 rounded-lg">
             {filteredItems.length > 0 ? (
               <ul>
                 {filteredItems.map((item) => (
-                  <li key={item.id} className="text-black">
+                  <Link
+                    to={`/${item?.title.toLowerCase()}`}
+                    key={item.id}
+                    className="text-black rounded-lg cursor-pointer capitalize hover:bg-gray-300 p-2"
+                  >
                     {item.title}
-                  </li>
+                  </Link>
                 ))}
               </ul>
             ) : (
